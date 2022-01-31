@@ -18,7 +18,16 @@ namespace Models
         {
             
         }
-
        
+
+        public Tuple<string[], string[]> ReadDatabase(string pathToFile)
+        {
+            var allLines = File.ReadAllLines(pathToFile);
+            var headers = allLines[0].Split(",").ToArray();
+            var entry = allLines.Skip(1).ToArray();
+            var result = Tuple.Create(headers, entry);
+            return result;
+        }
+
     }
 }

@@ -15,6 +15,6 @@ namespace Models
         public int BarCode { get; set; }
         public double Weight { get; set; }
 
-        public Item() { }
+        
     }
 }

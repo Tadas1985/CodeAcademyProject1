@@ -1,4 +1,5 @@
-﻿using Baseline.ImTools;
+﻿using Baseline;
+using Baseline.ImTools;
 using ImTools;
 using System;
 using System.Collections.Generic;
@@ -9,42 +10,47 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class CandiesRepository : Candies
+    public class CandiesRepository 
     {
-        public List<Candies> candiesList = new List<Candies>();
-
-        private string pathCandies = @"C:\Users\tadas.valutis\Desktop\CodeAcademy\PROJECT\TextFiles\Candies.csv";
-        public string[] csvLines = File.ReadAllLines(@"C:\Users\tadas.valutis\Desktop\CodeAcademy\PROJECT\TextFiles\Candies.csv");
-
         
         
+        public Tuple<string[], string[]> CandiesDataFromCSVFile;
+        public string[] Keys;
+        public List<Candies> CandyList;
+        private readonly string candiesPath = @"C:\Users\tadas.valutis\Desktop\CodeAcademy\PROJECT\TextFiles\Candies.csv";
 
-        public CandiesRepository(string name, int sugar, decimal price, int barCode, double weight) : base(name, sugar, price, barCode, weight)
+        public CandiesRepository()
         {
-            Name = name;
-            Sugar = sugar;
-            Price = price;
-            Weight = weight;
-
-
-
+            var fileService = new FIleReaderService();
+            CandiesDataFromCSVFile = fileService.ReadDatabase(candiesPath);
+            Keys = CandiesDataFromCSVFile.Item1;
+            CandyList = BuildCandyList(CandiesDataFromCSVFile.Item2);
         }
 
-        public void ReadCSVFile()
+        public List<Candies> BuildCandyList(string[] inputList)
         {
-            var lines = File.ReadAllLines(pathCandies);
-            foreach (var line in lines)
+            var resultList = new List<Candies>();
+            foreach (string item in inputList)
             {
-                string[] rawData = line.Split(',');
-                var candy = new Candies(Name, Sugar, Price,BarCode,Weight) { Name = rawData[0], Sugar = Convert.ToInt32(rawData[1]), Price = Convert.ToDecimal(rawData[2]), BarCode = Convert.ToInt32(rawData[3]), Weight = Convert.ToDouble(rawData[4]) };
-                candiesList.Add(candy);
-            }  
-            
+                var splitItem = item.Split(",");
+                var CandyEntry = new Candies( splitItem[0], Convert.ToInt32(splitItem[1]), Convert.ToDecimal(splitItem[2]),   Convert.ToInt32(splitItem[3]), Convert.ToDouble(splitItem[4]));
+                resultList.Add(CandyEntry);
+            }
+            return resultList;
         }
 
-       
+        public void PrintAllProducts()
+        {
+            string stringAligment = "{0,-15}|  {1,-10}|  {2,-10}|  {3,-15}|  {4,-15}";
+            Console.WriteLine("Candys\n");
+            Console.WriteLine(String.Format( stringAligment,Keys) + "\n");
+            foreach (Candies candy in CandyList)
+            {
+                Console.WriteLine(String.Format(stringAligment, candy.Name, candy.Sugar, candy.Price, candy.BarCode,  candy.Weight));                                                              
+            }
+            Console.WriteLine();
+        }
     }
-    
 }
         
     

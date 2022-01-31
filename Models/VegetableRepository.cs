@@ -7,26 +7,46 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class VegetableRepository: Vegetables
+    public class VegetableRepository
     {
-        private readonly string pathVegetables = @"C:\Users\tadas.valutis\Desktop\CodeAcademy\PROJECT\TextFiles\Vegetables.csv";
-        public List<Vegetables>vegetableList = new List<Vegetables>();
+        public Tuple<string[], string[]> VegetableDataFromCSVFile;
+        public string[] Keys;
+        public List<Vegetables> VegetableList;
+        private readonly string VegetablePath = @"C:\Users\tadas.valutis\Desktop\CodeAcademy\PROJECT\TextFiles\Vegetables.csv";
 
-        public VegetableRepository(string name, int fiber, decimal price, int barCode, double weight) : base(name, fiber, price, barCode, weight)
+        public VegetableRepository()
         {
+            var fileService = new FIleReaderService();
+            VegetableDataFromCSVFile = fileService.ReadDatabase(VegetablePath);
+            Keys = VegetableDataFromCSVFile.Item1;
+            VegetableList = BuildVegetablesList(VegetableDataFromCSVFile.Item2);
         }
 
-        public void ReadCSVFile()
+        public List<Vegetables> BuildVegetablesList(string[] inputList)
         {
-            var lines = File.ReadAllLines(pathVegetables);
-            foreach (var line in lines)
+            var resultList = new List<Vegetables>();
+            foreach (string item in inputList)
             {
-                string[] rawData = line.Split(',');
-                var vegetables = new Vegetables(Name, Fiber, Price, BarCode, Weight) { Name = rawData[0], Fiber = Convert.ToInt32(rawData[1]), Price = Convert.ToDecimal(rawData[2]), BarCode = Convert.ToInt32(rawData[3]), Weight = Convert.ToDouble(rawData[4]) };
-                vegetableList.Add(vegetables);
+                var splitItem = item.Split(",");
+                var VegetableEntry = new Vegetables(splitItem[0], Convert.ToInt32(splitItem[1]), Convert.ToDecimal(splitItem[2]), Convert.ToInt32(splitItem[3]), Convert.ToDouble(splitItem[4]));
+                resultList.Add(VegetableEntry);
             }
-            vegetableList.ForEach(meats => Console.WriteLine(meats));
+            return resultList;
         }
-       
+
+        public void PrintAllProducts()
+        {
+            string stringAligment = "{0,-15}|  {1,-10}|  {2,-10}|  {3,-15}|  {4,-15}";
+            Console.WriteLine("Drinks\n");
+            Console.WriteLine(String.Format(stringAligment, Keys) + "\n");
+            foreach (Vegetables vegetables in VegetableList)
+            {
+                Console.WriteLine(String.Format(stringAligment, vegetables.Name, vegetables.Fiber, vegetables.Price, vegetables.BarCode, vegetables.Weight));
+
+
+            }
+            Console.WriteLine();
+        }
+
     }
 }

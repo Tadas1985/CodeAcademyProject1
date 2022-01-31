@@ -7,25 +7,46 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class DrinkRepository: Drinks
+    public class DrinkRepository
     {
-        private readonly string pathDrinks = @"C:\Users\tadas.valutis\Desktop\CodeAcademy\PROJECT\TextFiles\Drinks.csv";
-        public List<Drinks> drinkList = new List<Drinks>();
+        
+        public Tuple<string[], string[]> DrinksDataFromCSVFile;
+        public string[] Keys;
+        public List<Drinks> DrinksList;
+        private readonly string DrinksPath = @"C:\Users\tadas.valutis\Desktop\CodeAcademy\PROJECT\TextFiles\Drinks.csv";
 
-        public DrinkRepository(string name, int liters, decimal price, int barCode, double weight) : base(name, liters, price, barCode, weight)
+        public DrinkRepository()
         {
+            var fileService = new FIleReaderService();
+            DrinksDataFromCSVFile = fileService.ReadDatabase(DrinksPath);
+            Keys = DrinksDataFromCSVFile.Item1;
+            DrinksList = BuildDrinksList(DrinksDataFromCSVFile.Item2);
         }
 
-        public void ReadCSVFile()
+        public List<Drinks> BuildDrinksList(string[] inputList)
         {
-            var lines = File.ReadAllLines(pathDrinks);
-            foreach (var line in lines)
+            var resultList = new List<Drinks>();
+            foreach (string item in inputList)
             {
-                string[] rawData = line.Split(',');
-                var drinks = new Drinks(Name, Liters, Price, BarCode, Weight) { Name = rawData[0], Liters = Convert.ToInt32(rawData[1]), Price = Convert.ToDecimal(rawData[2]), BarCode = Convert.ToInt32(rawData[3]), Weight = Convert.ToDouble(rawData[4]) };
-                drinkList.Add(drinks);
+                var splitItem = item.Split(",");
+                var DrinksEntry = new Drinks(splitItem[0], Convert.ToInt32(splitItem[1]), Convert.ToDecimal(splitItem[2]), Convert.ToInt32(splitItem[3]), Convert.ToDouble(splitItem[4]));
+                resultList.Add(DrinksEntry);
             }
-            
+            return resultList;
+        }
+
+        public void PrintAllProducts()
+        {
+            string stringAligment = "{0,-15}|  {1,-10}|  {2,-10}|  {3,-15}|  {4,-15}";
+            Console.WriteLine("Drinks\n");
+            Console.WriteLine(String.Format(stringAligment, Keys) + "\n");
+            foreach (Drinks drink in DrinksList)
+            {
+                Console.WriteLine(String.Format(stringAligment, drink.Name, drink.Liters, drink.Price, drink.BarCode, drink.Weight));
+
+
+            }
+            Console.WriteLine();
         }
     }
 }

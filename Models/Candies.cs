@@ -21,7 +21,7 @@ namespace Models
 
         public override string ToString()
         {
-            string srt = $"Name of item: {Name}, Amount of sugar: {Sugar}, price per unit: {Price}, barcode: {BarCode}, weight: {Weight} ";
+            string srt = $"Name of item: {Name}, Amount of sugar: {Sugar}, price per unit: {Price}, barcode: {BarCode}, weight kg: {Weight} ";
             return srt;
         }
     }

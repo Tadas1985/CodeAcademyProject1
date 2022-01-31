@@ -18,10 +18,10 @@ namespace Models
             
         }
 
-        public Vegetables(string name, int fiber)
-        {
-            Name = name;
-            Fiber = fiber;
-        }
+        //public Vegetables(string name, int fiber)
+        //{
+        //    Name = name;
+        //    Fiber = fiber;
+        //}
     }
 }
