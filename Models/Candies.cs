@@ -24,5 +24,13 @@ namespace Models
             string srt = $"Name of item: {Name}, Amount of sugar: {Sugar}, price per unit: {Price}, barcode: {BarCode}, weight kg: {Weight} ";
             return srt;
         }
+        public string ToString(string lineFormatting)
+        {
+            return String.Format(lineFormatting, this.Name,this.Sugar,this.Price,this.BarCode,this.Weight);
+                                                 
+                                                 
+                                                 
+                                                 
+        }
     }
 }

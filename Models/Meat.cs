@@ -17,6 +17,19 @@ namespace Models
             Name = name;
             Protein = protein;
         }
+        public override string ToString()
+        {
+            return $"{this.Name},{this.Protein},{this.Price},{this.BarCode},{this.Weight}";
+        }
+
+        public string ToString(string lineFormatting)
+        {
+            return String.Format(lineFormatting, this.Name, this.Protein, this.Price,this.BarCode, this.Weight);
+                                                
+                                                 
+                                                
+                                                
+        }
 
     }      
 }

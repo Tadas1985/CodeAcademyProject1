@@ -16,5 +16,18 @@ namespace Models
             Name = name;
             Liters = liters;
         }
+        public override string ToString()
+        {
+            return $"{this.Name},{this.Liters},{this.Price},{this.BarCode},{this.Weight}";
+        }
+
+        public string ToString(string lineFormatting)
+        {
+            return String.Format(lineFormatting, this.Name,this.Liters,this.Price, this.BarCode, this.Weight);
+                                                
+                                                
+                                                 
+                                                 
+        }
     }
 }

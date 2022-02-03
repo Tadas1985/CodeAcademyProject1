@@ -29,7 +29,7 @@ namespace Models
             foreach (string item in inputList)
             {
                 var splitItem = item.Split(",");
-                var DrinksEntry = new Drinks(splitItem[0], Convert.ToInt32(splitItem[1]), Convert.ToDecimal(splitItem[2]), Convert.ToInt32(splitItem[3]), Convert.ToDouble(splitItem[4]));
+                var DrinksEntry = new Drinks(splitItem[0], int.Parse(splitItem[1]), decimal.Parse(splitItem[2]), int.Parse(splitItem[3]), int.Parse(splitItem[4]));
                 resultList.Add(DrinksEntry);
             }
             return resultList;
@@ -37,7 +37,7 @@ namespace Models
 
         public void PrintAllProducts()
         {
-            string stringAligment = "{0,-15}|  {1,-10}|  {2,-10}|  {3,-15}|  {4,-15}";
+            string stringAligment = "{0,-15}|  {1,-15}|  {2,-15}|  {3,-15}|  {4,-15}";
             Console.WriteLine("Drinks\n");
             Console.WriteLine(String.Format(stringAligment, Keys) + "\n");
             foreach (Drinks drink in DrinksList)

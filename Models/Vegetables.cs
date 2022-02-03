@@ -6,22 +6,30 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Vegetables: Item
+    public class Vegetables : Item
     {
         public string Name { get; set; }
         public int Fiber { get; set; }
 
-       
 
-        public Vegetables(string name, int fiber, decimal price, int barCode, double weight):base (price, barCode, weight)
+
+        public Vegetables(string name, int fiber, decimal price, int barCode, double weight) : base(price, barCode, weight)
         {
-            
+
         }
 
-        //public Vegetables(string name, int fiber)
-        //{
-        //    Name = name;
-        //    Fiber = fiber;
-        //}
+        public override string ToString()
+        {
+            return $"{this.Name},{this.Fiber},{this.Price},{this.BarCode},{this.Weight}";
+        }
+
+        public string ToString(string lineFormatting)
+        {
+            return String.Format(lineFormatting, this.Name, this.Fiber, this.Price, this.BarCode, this.Weight);
+
+
+
+
+        }
     }
 }

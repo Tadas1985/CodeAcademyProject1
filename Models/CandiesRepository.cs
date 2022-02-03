@@ -33,7 +33,7 @@ namespace Models
             foreach (string item in inputList)
             {
                 var splitItem = item.Split(",");
-                var CandyEntry = new Candies( splitItem[0], Convert.ToInt32(splitItem[1]), Convert.ToDecimal(splitItem[2]),   Convert.ToInt32(splitItem[3]), Convert.ToDouble(splitItem[4]));
+                var CandyEntry = new Candies( splitItem[0], int.Parse(splitItem[1]), decimal.Parse(splitItem[2]),   int.Parse(splitItem[3]), double.Parse(splitItem[4]));
                 resultList.Add(CandyEntry);
             }
             return resultList;
@@ -41,7 +41,7 @@ namespace Models
 
         public void PrintAllProducts()
         {
-            string stringAligment = "{0,-15}|  {1,-10}|  {2,-10}|  {3,-15}|  {4,-15}";
+            string stringAligment = "{0,-15}|  {1,-15}|  {2,-15}|  {3,-15}|  {4,-15}"; // We create a separator by | from each item
             Console.WriteLine("Candys\n");
             Console.WriteLine(String.Format( stringAligment,Keys) + "\n");
             foreach (Candies candy in CandyList)

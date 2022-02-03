@@ -2,10 +2,31 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Baseline/3.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Baseline.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Baseline.dll": {}
+        }
+      },
       "coverlet.collector/3.0.2": {
         "type": "package",
         "build": {
           "build/netstandard1.0/coverlet.collector.targets": {}
+        }
+      },
+      "DryIoc.dll/4.8.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Reflection.Emit.Lightweight": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DryIoc.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DryIoc.dll": {}
         }
       },
       "Microsoft.CodeCoverage/16.9.4": {
@@ -1061,7 +1082,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/_._": {}
+          "ref/netstandard1.0/System.Reflection.Emit.ILGeneration.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.ILGeneration.dll": {}
@@ -1076,7 +1097,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/_._": {}
+          "ref/netstandard1.0/System.Reflection.Emit.Lightweight.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.Lightweight.dll": {}
@@ -1670,10 +1691,38 @@
         "build": {
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Baseline": "3.2.2",
+          "DryIoc.dll": "4.8.6"
+        },
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "Baseline/3.2.2": {
+      "sha512": "K+SeFyX8XfJmh9J3uWM/6ci6Bh0bW5+3Ps+FqYYP7CVDiXwr5ZIb1JNoMOCSiUB44FV8bcEuDfh0gs2NfcHS8w==",
+      "type": "package",
+      "path": "baseline/3.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "baseline.3.2.2.nupkg.sha512",
+        "baseline.nuspec",
+        "lib/net5.0/Baseline.dll",
+        "lib/net6.0/Baseline.dll",
+        "lib/netstandard2.0/Baseline.dll"
+      ]
+    },
     "coverlet.collector/3.0.2": {
       "sha512": "iBvPAIDaI7j/iMx/DzCGCJ3rdiOmel9VINEfaTiBv/NKIGHOP4X3hqc6Q1wgMtArEshlhXexQknP17SK4vXb1w==",
       "type": "package",
@@ -1723,6 +1772,37 @@
         "coverlet-icon.png",
         "coverlet.collector.3.0.2.nupkg.sha512",
         "coverlet.collector.nuspec"
+      ]
+    },
+    "DryIoc.dll/4.8.6": {
+      "sha512": "/mpkT81DhF/z3B0pcltNquxo0/kvqFn6if2QuQH4SUGUSFLBqVOoOjfCSBBRBmXlRlH7G7iKreKkFHcIfReJUg==",
+      "type": "package",
+      "path": "dryioc.dll/4.8.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "DryIoc.snk",
+        "LICENSE.txt",
+        "dryioc.dll.4.8.6.nupkg.sha512",
+        "dryioc.dll.nuspec",
+        "icon.png",
+        "lib/net35/DryIoc.dll",
+        "lib/net35/DryIoc.xml",
+        "lib/net40/DryIoc.dll",
+        "lib/net40/DryIoc.xml",
+        "lib/net45/DryIoc.dll",
+        "lib/net45/DryIoc.xml",
+        "lib/netstandard1.0/DryIoc.dll",
+        "lib/netstandard1.0/DryIoc.xml",
+        "lib/netstandard1.3/DryIoc.dll",
+        "lib/netstandard1.3/DryIoc.xml",
+        "lib/netstandard2.0/DryIoc.dll",
+        "lib/netstandard2.0/DryIoc.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/DryIoc.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/DryIoc.xml",
+        "lib/portable-net45+win8+wp8+wpa81/DryIoc.dll",
+        "lib/portable-net45+win8+wp8+wpa81/DryIoc.xml",
+        "readme.txt"
       ]
     },
     "Microsoft.CodeCoverage/16.9.4": {
@@ -5906,11 +5986,17 @@
         "xunit.runner.visualstudio.2.4.3.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../Models/Models.csproj",
+      "msbuildProject": "../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Microsoft.NET.Test.Sdk >= 16.9.4",
+      "Models >= 1.0.0",
       "coverlet.collector >= 3.0.2",
       "xunit >= 2.4.1",
       "xunit.runner.visualstudio >= 2.4.3"
@@ -5942,7 +6028,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\tadas.valutis\\Desktop\\CodeAcademy\\PROJECT\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\tadas.valutis\\Desktop\\CodeAcademy\\PROJECT\\Models\\Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

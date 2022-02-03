@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "vlQ/sMOzY4mYfE6R2CtvS0CCzn8Zqdnn+RBKC5RTMhL1IwSAXu7Y6qB4fczVy/8Bf8YxxYOsFiYbycKbKG98og==",
+  "dgSpecHash": "wBLQWuk0/Z3wIq6OHFwYVk+iEUmd5ZgX1yWLQzXL9UQKwECvHvZxygGIsteRa0lRkJuOMAKalFHsOt2cIFVnQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\tadas.valutis\\Desktop\\CodeAcademy\\PROJECT\\ModelsTest\\ModelsTest.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\tadas.valutis\\.nuget\\packages\\baseline\\3.2.2\\baseline.3.2.2.nupkg.sha512",
     "C:\\Users\\tadas.valutis\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
+    "C:\\Users\\tadas.valutis\\.nuget\\packages\\dryioc.dll\\4.8.6\\dryioc.dll.4.8.6.nupkg.sha512",
     "C:\\Users\\tadas.valutis\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",
     "C:\\Users\\tadas.valutis\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\tadas.valutis\\.nuget\\packages\\microsoft.net.test.sdk\\16.9.4\\microsoft.net.test.sdk.16.9.4.nupkg.sha512",
