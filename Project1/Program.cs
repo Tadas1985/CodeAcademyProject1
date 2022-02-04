@@ -47,18 +47,14 @@ namespace Project1
                     drinksRep.PrintAllProducts();
                     meatRep.PrintAllProducts();
                     vegetableRep.PrintAllProducts();
-                    Console.WriteLine("What would you like to buy? Candies [1], Drinks [2], Meat [3], Vegetable [4],  Exit [5]");
-                    var inputChoise = Convert.ToInt32(Console.ReadLine());
-                    if (inputChoise >= 1 && inputChoise <= 5) //Int32.TryParse(Console.ReadLine(), out int inputChoise))
+                    var inputChoise = store.ValdidatorOfUserInput();
+                    if (inputChoise >= 1 && inputChoise <= 5)
                     {
                         switch (inputChoise) // When user chose a category we as what tipe of item he would like to buy and place that item into a shoping cart list
                         {
-                            case 1:
-                                
-                               
-                                Console.WriteLine("What tipe of candies would you like to buy?: Caramel [1], Sugar Candy [2], Chocolate [3], Dark Chocolate [4], Milk Chocolate");
+                            case 1:                               
                                 candyRep.PrintAllProducts();
-                                int candyChoice = Convert.ToInt32(Console.ReadLine());
+                                int candyChoice =store.ValdidatorOfUserInput();
                                 if (candyChoice == 1)
                                 {
                                     basket.AddToCart(candyRep.CandyList[0]);
@@ -78,11 +74,10 @@ namespace Project1
                                 else { basket.AddToCart(candyRep.CandyList[3]); }
 
                                 break;
-                            case 2:
-                                
+                            case 2:                               
                                 Console.WriteLine("What tipe of drinks would you like to buy?: Red Wine [1], White Wine [2], Beer [3], Juce [4], Tea");
                                 drinksRep.PrintAllProducts();
-                                int drinkChoice = Convert.ToInt32(Console.ReadLine());
+                                int drinkChoice = store.ValdidatorOfUserInput();
                                 //store.ReturnToStore();
                                 if (drinkChoice ==1)
                                 {
@@ -101,12 +96,10 @@ namespace Project1
                                     basket.AddToCart(drinksRep.DrinksList[4]);
                                 }
                                 break;
-                            case 3:
-                                
+                            case 3:                                
                                 Console.WriteLine("What tipe of meat would you like to buy?: Beef [1], Deer [2], Chicken [3], Fish [4], Pork");
                                 meatRep.PrintAllProducts();
-                                int meatChoice = Convert.ToInt32(Console.ReadLine());
-                                //store.ReturnToStore();
+                                int meatChoice = store.ValdidatorOfUserInput();
                                 if (meatChoice == 1)
                                 {
                                     basket.AddToCart(meatRep.MeatList[0]);
@@ -128,12 +121,9 @@ namespace Project1
                                     basket.AddToCart(meatRep.MeatList[4]);
                                 }
                                 break;
-                            case 4:
-                                
+                            case 4:                                
                                 Console.WriteLine("What tipe of vegetables would you like to buy?: Cabbage [1], Carrots [2], Tomatoe [3], Onions [4], Cucumber");
-
-                                int vegetableChoice = Convert.ToInt32(Console.ReadLine());
-                                //store.ReturnToStore();
+                                int vegetableChoice = store.ValdidatorOfUserInput();
                                 if (vegetableChoice ==1)
                                 {
                                     basket.AddToCart(vegetableRep.VegetableList[0]);

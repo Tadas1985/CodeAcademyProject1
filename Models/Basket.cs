@@ -32,7 +32,7 @@ namespace Models
         {
             foreach (var item in basketOfItems)
             {
-                Console.WriteLine($"{basketOfItems.IndexOf(item) + 1} - {item}");
+                Console.WriteLine(item);
             }
         }
         public void AddToCart(Vegetables product)

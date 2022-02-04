@@ -47,16 +47,6 @@ namespace Models
             }
             Console.WriteLine();
         }
-        //public List<Vegetables> PrintVegetablelist()
-        //{
-            
-        //    foreach (Vegetables vegetables in VegetableList)
-        //    {
-        //        Console.WriteLine(String.Format(vegetables.Name, vegetables.Fiber, vegetables.Price, vegetables.BarCode, vegetables.Weight));
-
-
-        //    }
-        //    return VegetableList;
-        //}
+       
     }
 }

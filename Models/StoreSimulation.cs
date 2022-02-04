@@ -15,8 +15,7 @@ namespace Models
         public CandiesRepository candiesRepository { get; private set; }
         public MeatRepository meatRepository { get; private set; }
         public StoreSimulation()
-        {
-            
+        {           
             vegetableRepository = new VegetableRepository();
             drinkRepository = new DrinkRepository();
             candiesRepository = new CandiesRepository();
@@ -76,10 +75,28 @@ namespace Models
                 Console.WriteLine("You entered ivalid value, press enter to continue");
                 Console.ReadKey();
                 return 0;
+ 
             }
         }
-
-       
-
+        public int ValdidatorOfUserInput()
+        {
+            bool active = true;
+            do
+            {
+                int answer;
+                Console.WriteLine("What would you like to buy? Candies [1], Drinks [2], Meat [3], Vegetable [4],  Exit [5]");
+                var rawAnswer = Console.ReadLine();
+                if (int.TryParse(rawAnswer, out answer) && answer > 0 && answer < 6)
+                {
+                    return answer;
+                    active = false;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid choise");
+                    return 0;
+                }
+            } while (active);            
+        }
     }   
 }
