@@ -52,7 +52,8 @@ namespace Project1
                     {
                         switch (inputChoise) // When user chose a category we as what tipe of item he would like to buy and place that item into a shoping cart list
                         {
-                            case 1:                               
+                            case 1:
+                                Console.WriteLine("What tipe of candies would you like to buy?: Caramel [1], Sugar candy [2], Chocolate [3], Dark Chocolate [4], Milk Chocolate");
                                 candyRep.PrintAllProducts();
                                 int candyChoice =store.ValdidatorOfUserInput();
                                 if (candyChoice == 1)

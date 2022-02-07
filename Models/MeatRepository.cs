@@ -45,7 +45,6 @@ namespace Models
             {
                 Console.WriteLine(String.Format(stringAligment, meat.Name, meat.Protein, meat.Price, meat.BarCode, meat.Weight));
 
-
             }
             Console.WriteLine();
         }
